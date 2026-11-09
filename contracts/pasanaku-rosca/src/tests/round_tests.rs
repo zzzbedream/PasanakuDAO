@@ -371,12 +371,31 @@ fn round_status_projects_approved_bid_and_dividend() {
     approve(&mut c, accounts(3), 3 * TOKEN_UNIT, T0 + 2);
     pay_all(&mut c, T0 + 3);
     set_caller(accounts(5), T0 + 4);
-    let status = c.get_round_status(CIRCLE.to_string());
+    let status = c
+        .get_round_status(CIRCLE.to_string())
+        .expect("active circle has a round");
     assert!(status.can_close);
     assert_eq!(status.projected_winner, Some(accounts(3)));
     assert_eq!(status.projected_discount.0, 3 * TOKEN_UNIT);
     assert_eq!(status.projected_dividend_each.0, TOKEN_UNIT);
     assert_eq!(status.bids.len(), 1);
+}
+
+#[test]
+fn round_status_is_none_for_pending_or_unknown_circle() {
+    let mut c = new_contract();
+    assert!(
+        c.get_round_status(CIRCLE.to_string()).is_none(),
+        "unknown circle"
+    );
+    create_default_circle(&mut c);
+    assert!(
+        c.get_round_status(CIRCLE.to_string()).is_none(),
+        "pending circle has no round yet"
+    );
+    set_caller(dao(), T0);
+    c.activate_circle(CIRCLE.to_string());
+    assert!(c.get_round_status(CIRCLE.to_string()).is_some());
 }
 
 #[test]

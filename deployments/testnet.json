@@ -1,0 +1,144 @@
+{
+  "network": "testnet",
+  "master": "pasanakudao.testnet",
+  "contracts": {
+    "rosca": "rosca.pasanakudao.testnet",
+    "token": "usdc.fakes.testnet",
+    "dao": "dao.pasanakudao.testnet",
+    "bulkpay": "bulkpay.pasanakudao.testnet"
+  },
+  "agent": "agent.pasanakudao.testnet",
+  "agent_function_call_keys": [
+    {
+      "public_key": "ed25519:Cdx7XA5StaVpPZ183KQ6kaVh74Ljx4ACe1Y1FCLnza9Z",
+      "receiver": "rosca.pasanakudao.testnet",
+      "methods": [
+        "close_round",
+        "execute_payouts",
+        "claim_payout"
+      ],
+      "allowance": "1 NEAR"
+    },
+    {
+      "public_key": "ed25519:B3RRKGGV2TjJQvKaQy2JgewdGfGjE55cGz3uh2rfCprZ",
+      "receiver": "usdc.fakes.testnet",
+      "methods": [
+        "ft_transfer_call",
+        "storage_deposit"
+      ],
+      "allowance": "1 NEAR"
+    },
+    {
+      "public_key": "ed25519:BMS2K9DnYMyvemD7KKC7cgQi4yoH2Fva2QnLSfVFRrQ4",
+      "receiver": "dao.pasanakudao.testnet",
+      "methods": [
+        "add_proposal"
+      ],
+      "allowance": "1 NEAR"
+    }
+  ],
+  "dao_policy": {
+    "council": [
+      "pasanakudao.testnet",
+      "m1.pasanakudao.testnet"
+    ],
+    "tesorero": [
+      "agent.pasanakudao.testnet"
+    ],
+    "threshold": "ratio 1/2 of council weight, i.e. 2 of 2 votes",
+    "proposal_bond_yocto": "100000000000000000000000"
+  },
+  "members": [
+    "pasanakudao.testnet",
+    "m1.pasanakudao.testnet",
+    "m2.pasanakudao.testnet",
+    "m3.pasanakudao.testnet"
+  ],
+  "demo_circle": {
+    "circle_id": "tanda-demo",
+    "contribution": "10000000",
+    "max_discount": "5000000",
+    "round_duration_ns": "3600000000000",
+    "activation_proposal_id": 0
+  },
+  "token_decimals": 6,
+  "wasm_sha256": {
+    "pasanaku_rosca.wasm": {
+      "sha256_hex": "e02e3530bb6f4ddc194584133caabe38d8d88189f115922519067e8a3a1f3a60",
+      "code_hash_base58": "G67C4UgTGo1EDQbkpQHwmQZfCGFw7NmZZyNY9YFuVZyH",
+      "deployed_to": "rosca.pasanakudao.testnet"
+    },
+    "sputnikdao2.wasm": {
+      "sha256_hex": "bf6f951ee5e45968e3367fa857bebf8bc80badec183998c2239c487237e0d7f6",
+      "code_hash_base58": "DtHZA1mUmGYeScEaUoUZYQGGFHSMpnjMCvkr5U9hJXuF",
+      "deployed_to": "dao.pasanakudao.testnet"
+    },
+    "bulk_payment_contract.wasm": {
+      "sha256_hex": "c4ef4a5495d5ca31649bbf3a81b27b97bf866be9ab9bc16fbb4a36550575bd5b",
+      "code_hash_base58": "EFkYE41DuQa8sSXxKpyhc7q3CXWENCPBada355KsVEyQ",
+      "deployed_to": "bulkpay.pasanakudao.testnet"
+    },
+    "test_token.wasm": {
+      "sha256_hex": "2a3a95ebc2e69254eb0ab284bea276be8c3f167805e7d5275cbdd14f026c20ad",
+      "code_hash_base58": "3qqwLAqvxPyVGgDQmtuF1EGVuAq5KiyFqYodxVrDgbgQ",
+      "deployed_to": null
+    }
+  },
+  "transactions": [
+    {
+      "label": "deploy rosca + new(owner_id)",
+      "hash": "3wbSGewEQseDbfnpHikBQ9ETXuHWBW4LsM1wyfwFMMhe",
+      "explorer": "https://testnet.nearblocks.io/txns/3wbSGewEQseDbfnpHikBQ9ETXuHWBW4LsM1wyfwFMMhe"
+    },
+    {
+      "label": "deploy Sputnik DAO v2 + new(config, policy)",
+      "hash": "dvwfeA4vJv8AnaC1r5mfyrJ9zWL1UczbzHqdVZWrsJ6",
+      "explorer": "https://testnet.nearblocks.io/txns/dvwfeA4vJv8AnaC1r5mfyrJ9zWL1UczbzHqdVZWrsJ6"
+    },
+    {
+      "label": "deploy Trezu bulk-payment + new()",
+      "hash": "Hd78aiUnsSS6Udjf9J73CE5rwpeQDU3CKmyqmKtPtEAW",
+      "explorer": "https://testnet.nearblocks.io/txns/Hd78aiUnsSS6Udjf9J73CE5rwpeQDU3CKmyqmKtPtEAW"
+    },
+    {
+      "label": "mint 100 test USDC to master",
+      "hash": "3H1Miy9Rkd4sH3byzQJYMhXzE73NHHxypLKSzuNdrq9Z",
+      "explorer": "https://testnet.nearblocks.io/txns/3H1Miy9Rkd4sH3byzQJYMhXzE73NHHxypLKSzuNdrq9Z"
+    },
+    {
+      "label": "bulk-payment buy_storage(200, beneficiary rosca)",
+      "hash": "8GSVLDvL6qxfyemsuc3utc6vieYSGeU9PVZBiExr4nxo",
+      "explorer": "https://testnet.nearblocks.io/txns/8GSVLDvL6qxfyemsuc3utc6vieYSGeU9PVZBiExr4nxo"
+    },
+    {
+      "label": "create_circle tanda-demo (4 members, 10 USDC)",
+      "hash": "9nfEgNtAHjtH4dVmi16Lv2qdtFnqV4FqE1Fh4vM4Me1F",
+      "explorer": "https://testnet.nearblocks.io/txns/9nfEgNtAHjtH4dVmi16Lv2qdtFnqV4FqE1Fh4vM4Me1F"
+    },
+    {
+      "label": "DAO add_proposal #0 activate_circle",
+      "hash": "E9UzoWK1B6mQSoqZdsaaUUhC1hVx5QAFmeHroVwbu6ef",
+      "explorer": "https://testnet.nearblocks.io/txns/E9UzoWK1B6mQSoqZdsaaUUhC1hVx5QAFmeHroVwbu6ef"
+    },
+    {
+      "label": "DAO act_proposal #0 VoteApprove (pasanakudao.testnet)",
+      "hash": "EBCeeNTn3bjBw3UHCfLaodrDG6wzpuVVsMSMETP47K3a",
+      "explorer": "https://testnet.nearblocks.io/txns/EBCeeNTn3bjBw3UHCfLaodrDG6wzpuVVsMSMETP47K3a"
+    },
+    {
+      "label": "DAO act_proposal #0 VoteApprove (m1) executes activate_circle",
+      "hash": "kmNnTiK5b9g3Zbut6ErNE1PdMuc3SgnQqgrAu561upy",
+      "explorer": "https://testnet.nearblocks.io/txns/kmNnTiK5b9g3Zbut6ErNE1PdMuc3SgnQqgrAu561upy"
+    },
+    {
+      "label": "redeploy rosca code (get_round_status returns Option; state layout unchanged)",
+      "hash": "DySyaooLxNe6AeAwE1QZMEz2k4E44gzkjH5V29dhtrQV",
+      "explorer": "https://testnet.nearblocks.io/txns/DySyaooLxNe6AeAwE1QZMEz2k4E44gzkjH5V29dhtrQV"
+    }
+  ],
+  "explorer": {
+    "tx_base": "https://testnet.nearblocks.io/txns/",
+    "account_base": "https://testnet.nearblocks.io/address/"
+  },
+  "generated_at": "2026-11-09T19:15:00Z"
+}

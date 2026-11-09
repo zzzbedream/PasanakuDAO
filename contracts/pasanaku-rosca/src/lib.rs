@@ -83,10 +83,13 @@ impl Contract {
             .collect()
     }
 
-    pub fn get_round_status(&self, circle_id: String) -> RoundStatusView {
-        let circle = self.circle_or_panic(&circle_id);
-        let round = self.round_or_panic(circle, circle.current_round);
-        round::status_view(circle, round, env::block_timestamp())
+    /// Live snapshot of the current round with the projected winner and
+    /// dividend. `None` when the circle does not exist or is still `Pending`
+    /// (no round has been opened yet), so UIs never hit a panic.
+    pub fn get_round_status(&self, circle_id: String) -> Option<RoundStatusView> {
+        let circle = self.circles.get(&circle_id)?;
+        let round = self.rounds.get(&circle.round_key(circle.current_round))?;
+        Some(round::status_view(circle, round, env::block_timestamp()))
     }
 
     pub fn get_reputation(&self, account_id: AccountId) -> Reputation {

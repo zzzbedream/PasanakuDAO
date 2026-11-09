@@ -112,7 +112,9 @@ fn round_status_reflects_payments_and_projection() {
     pay(&mut c, accounts(0), None, CONTRIBUTION, T0 + 1);
     pay(&mut c, accounts(2), None, CONTRIBUTION, T0 + 2);
     set_caller(accounts(5), T0 + 3);
-    let status = c.get_round_status(CIRCLE.to_string());
+    let status = c
+        .get_round_status(CIRCLE.to_string())
+        .expect("active circle has a round");
     assert_eq!(status.paid.len(), 2);
     assert_eq!(status.unpaid, vec![accounts(1), accounts(3)]);
     assert_eq!(status.pot.0, 2 * CONTRIBUTION);
