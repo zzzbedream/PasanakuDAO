@@ -1,0 +1,5 @@
+[toolchain]
+# near-sdk 5.30 requires rustc >= 1.95. Pinned so every machine (judges, CI, WSL) builds identically.
+channel = "1.95.0"
+components = ["rustfmt", "clippy"]
+targets = ["wasm32-unknown-unknown"]

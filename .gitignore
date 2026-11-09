@@ -1,0 +1,23 @@
+# secrets
+.env
+.env.*
+!.env.example
+# rust
+/contracts/target/
+**/target/
+# node
+node_modules/
+.pnpm-store/
+# next
+web/.next/
+web/out/
+# agent runtime data
+agent/data/
+# wasm build outputs (prebuilt deps in contracts/res are tracked explicitly)
+contracts/res/*.wasm
+!contracts/res/sputnikdao2.wasm
+# misc
+*.log
+.DS_Store
+e2e/test-results/
+e2e/playwright-report/

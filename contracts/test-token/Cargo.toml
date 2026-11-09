@@ -1,0 +1,17 @@
+[package]
+name = "test-token"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Minimal NEP-141 token with a public mint, used as a USDC stand-in in sandbox tests and as a testnet fallback."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+near-sdk = { workspace = true }
+near-contract-standards = { workspace = true }
+
+[dev-dependencies]
+near-sdk = { workspace = true, features = ["unit-testing"] }
