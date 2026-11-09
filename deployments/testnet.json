@@ -10,29 +10,20 @@
   "agent": "agent.pasanakudao.testnet",
   "agent_function_call_keys": [
     {
+      "public_key": "ed25519:BMS2K9DnYMyvemD7KKC7cgQi4yoH2Fva2QnLSfVFRrQ4",
+      "receiver": "dao.pasanakudao.testnet",
+      "methods": [
+        "add_proposal"
+      ],
+      "allowance": "1 NEAR"
+    },
+    {
       "public_key": "ed25519:Cdx7XA5StaVpPZ183KQ6kaVh74Ljx4ACe1Y1FCLnza9Z",
       "receiver": "rosca.pasanakudao.testnet",
       "methods": [
         "close_round",
         "execute_payouts",
         "claim_payout"
-      ],
-      "allowance": "1 NEAR"
-    },
-    {
-      "public_key": "ed25519:B3RRKGGV2TjJQvKaQy2JgewdGfGjE55cGz3uh2rfCprZ",
-      "receiver": "usdc.fakes.testnet",
-      "methods": [
-        "ft_transfer_call",
-        "storage_deposit"
-      ],
-      "allowance": "1 NEAR"
-    },
-    {
-      "public_key": "ed25519:BMS2K9DnYMyvemD7KKC7cgQi4yoH2Fva2QnLSfVFRrQ4",
-      "receiver": "dao.pasanakudao.testnet",
-      "methods": [
-        "add_proposal"
       ],
       "allowance": "1 NEAR"
     }
@@ -46,7 +37,8 @@
       "agent.pasanakudao.testnet"
     ],
     "threshold": "ratio 1/2 of council weight, i.e. 2 of 2 votes",
-    "proposal_bond_yocto": "100000000000000000000000"
+    "proposal_bond_yocto": "0",
+    "bond_note": "Bond set to 0 by proposal #1 so the tesorero function-call key can propose; only council and tesorero roles may propose (no Everyone role)."
   },
   "members": [
     "pasanakudao.testnet",
@@ -134,11 +126,32 @@
       "label": "redeploy rosca code (get_round_status returns Option; state layout unchanged)",
       "hash": "DySyaooLxNe6AeAwE1QZMEz2k4E44gzkjH5V29dhtrQV",
       "explorer": "https://testnet.nearblocks.io/txns/DySyaooLxNe6AeAwE1QZMEz2k4E44gzkjH5V29dhtrQV"
+    },
+    {
+      "label": "DAO add_proposal #1 ChangePolicyUpdateParameters proposal_bond=0",
+      "hash": "4c8fTVxd38dXT9zudrtNDDG764wXoz6WryzwSPjYgZxc",
+      "explorer": "https://testnet.nearblocks.io/txns/4c8fTVxd38dXT9zudrtNDDG764wXoz6WryzwSPjYgZxc"
+    },
+    {
+      "label": "DAO act_proposal #1 VoteApprove (pasanakudao.testnet)",
+      "hash": "D55J8o2qQwZiEC7anLWdWYaDF651B9NvGiAsC155685B",
+      "explorer": "https://testnet.nearblocks.io/txns/D55J8o2qQwZiEC7anLWdWYaDF651B9NvGiAsC155685B"
+    },
+    {
+      "label": "DAO act_proposal #1 VoteApprove (m1) executes bond=0",
+      "hash": "BiKHcP5CyGbC84Rc27VpLPAs4wWtPK8KAkhevpD8srsL",
+      "explorer": "https://testnet.nearblocks.io/txns/BiKHcP5CyGbC84Rc27VpLPAs4wWtPK8KAkhevpD8srsL"
+    },
+    {
+      "label": "delete agent USDC function-call key (cannot attach the 1 yocto NEP-141 requires)",
+      "hash": "DEAxcLA9AVMZddR2d1H1qGJBGVtVcRbvtkQAQK9BniXs",
+      "explorer": "https://testnet.nearblocks.io/txns/DEAxcLA9AVMZddR2d1H1qGJBGVtVcRbvtkQAQK9BniXs"
     }
   ],
   "explorer": {
     "tx_base": "https://testnet.nearblocks.io/txns/",
     "account_base": "https://testnet.nearblocks.io/address/"
   },
-  "generated_at": "2026-11-09T19:15:00Z"
+  "generated_at": "2026-11-09T19:15:00Z",
+  "agent_key_notes": "Function-call access keys cannot attach a deposit (NEAR rejects it with InvalidAccessKeyError::DepositWithFunctionCall), and every NEP-141 transfer needs 1 yoctoNEAR, so in key mode the agent has no way to move tokens. It can only call close_round, execute_payouts and claim_payout on the rosca contract and add (never approve) zero-bond DAO proposals. Moving tokens on behalf of a member requires the OutLayer TEE custody wallet."
 }

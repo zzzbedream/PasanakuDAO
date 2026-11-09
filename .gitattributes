@@ -1,0 +1,8 @@
+# Keep LF in the repository so judges on Linux can run the scripts as-is.
+* text=auto eol=lf
+*.sh text eol=lf
+*.ps1 text eol=crlf
+*.wasm binary
+*.png binary
+*.jpg binary
+*.ico binary

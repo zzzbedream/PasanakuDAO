@@ -5,27 +5,39 @@
   "description": "PasanakuDAO (TandaTrezu): rotating savings circles (ROSCA) with urgency auctions and on-chain reputation, governed by Sputnik DAO v2 and paid through Trezu bulk-payment, with a policy-bound treasurer agent.",
   "license": "MIT",
   "packageManager": "pnpm@11.0.9",
-  "engines": { "node": ">=24" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "setup": "pnpm install && pnpm fetch:sputnik-wasm",
     "wasm": "pnpm --filter @pasanaku/scripts build-wasm",
     "test:unit": "cargo test --manifest-path contracts/Cargo.toml -p pasanaku-rosca -p test-token -p bulk-payment-contract",
     "test:sandbox": "cargo test --manifest-path contracts/Cargo.toml -p integration-tests -- --test-threads=1",
     "test:agent": "pnpm --filter @pasanaku/agent test",
+    "test:web": "pnpm --filter @pasanaku/web test",
+    "test:scripts": "pnpm --filter @pasanaku/scripts test",
     "typecheck": "pnpm -r typecheck",
     "fetch:sputnik-wasm": "pnpm --filter @pasanaku/scripts fetch-sputnik-wasm",
+    "fund:master": "pnpm --filter @pasanaku/scripts fund-master",
     "deploy:testnet": "pnpm --filter @pasanaku/scripts deploy-testnet",
     "seed": "pnpm --filter @pasanaku/scripts seed-demo",
     "smoke:testnet": "pnpm --filter @pasanaku/scripts smoke-testnet",
+    "demo:contribute": "pnpm --filter @pasanaku/scripts demo-contribute",
+    "demo:bid": "pnpm --filter @pasanaku/scripts demo-bid",
+    "demo:propose": "pnpm --filter @pasanaku/scripts demo-propose-approve",
+    "demo:vote": "pnpm --filter @pasanaku/scripts demo-vote",
+    "demo:close": "pnpm --filter @pasanaku/scripts demo-close",
+    "demo:export": "pnpm --filter @pasanaku/scripts demo-export",
     "demo:e2e": "pnpm --filter @pasanaku/scripts demo-e2e",
     "agent": "pnpm --filter @pasanaku/agent start",
     "bot": "pnpm --filter @pasanaku/agent bot",
     "api": "pnpm --filter @pasanaku/agent api",
-    "web": "pnpm --filter @pasanaku/web dev",
     "attack-demo": "pnpm --filter @pasanaku/agent attack-demo",
     "intents:quote": "pnpm --filter @pasanaku/agent intents:quote",
-    "outlayer:register": "pnpm --filter @pasanaku/scripts register-outlayer-wallet",
+    "outlayer:register": "pnpm --filter @pasanaku/agent outlayer:register",
+    "web": "pnpm --filter @pasanaku/web dev",
+    "web:build": "pnpm --filter @pasanaku/web build",
     "verify": "pnpm --filter @pasanaku/scripts verify",
-    "clean": "pnpm -r exec rimraf dist .next && cargo clean --manifest-path contracts/Cargo.toml"
+    "clean": "cargo clean --manifest-path contracts/Cargo.toml"
   }
 }
