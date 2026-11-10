@@ -1,23 +1,34 @@
-# secrets
+# secrets (never commit)
 .env
 .env.*
 !.env.example
-# rust
-/contracts/target/
+**/.env.local
+
+# local tooling, not part of the project judges review
+.claude/
+.vscode/
+.idea/
+*.code-workspace
+
+# rust build output
 **/target/
-# node
+
+# node / next
 node_modules/
 .pnpm-store/
-# next
 web/.next/
 web/out/
-# agent runtime data
+*.tsbuildinfo
+coverage/
+
+# agent runtime data (sqlite, audit log, attack-demo logs, OutLayer handoff)
 agent/data/
-# wasm build outputs (prebuilt deps in contracts/res are tracked explicitly)
-contracts/res/*.wasm
-!contracts/res/sputnikdao2.wasm
+
+# contracts/res holds the committed wasm that is deployed on testnet; keep it tracked.
+
 # misc
 *.log
 .DS_Store
+Thumbs.db
 e2e/test-results/
 e2e/playwright-report/
